@@ -51,7 +51,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>F.A.Q. Code du travail</title>
-          <link rel="shortcut icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+          <link rel="shortcut icon" type="image/x-icon" href="/faq-code-du-travail/static/assets/favicon.ico" />
           {this.props.styleTags}
         </Head>
         <body>

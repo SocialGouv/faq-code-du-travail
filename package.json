@@ -11,7 +11,7 @@
     "url": "https://github.com/SocialGouv/faq-code-du-travail/issues"
   },
   "scripts": {
-    "gh-pages": "cd web && npm run build && npm run export && cd .. && gh-pages -d ./web/out/"
+    "gh-pages": "cd web && npm run build && npm run export && cd .. && gh-pages -t -d ./web/out/"
   },
   "dependencies": {
     "hast-util-to-html": "^3.1.0",
