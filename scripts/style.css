@@ -1,0 +1,32 @@
+* {
+  font-family: Verdana, arial;
+}
+
+body {
+  padding: 3em;
+  font-size: 1.2em;
+  color: #222222;
+}
+
+a,
+a:visited {
+  color: #3f51b5;
+}
+
+p {
+  text-align: justify;
+}
+table {
+  padding: 0;
+  border-collapse: collapse;
+  min-width: 50vh;
+}
+table th {
+  padding: 3px;
+  border: 1px solid silver;
+  background: #eee;
+}
+table td {
+  padding: 3px;
+  border: 1px solid silver;
+}
