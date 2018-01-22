@@ -6,7 +6,7 @@ injectGlobal`
     font-family:  "Opensans Regular", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif
   }
   html {
-    height:100%;
+    min-height:100%;
   }
   body {
     background: #0575E6;  /* fallback for old browsers */
