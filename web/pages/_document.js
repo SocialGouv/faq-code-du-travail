@@ -5,6 +5,9 @@ injectGlobal`
   * {
     font-family:  "Opensans Regular", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif
   }
+  html {
+    height:100%;
+  }
   body {
     background: #0575E6;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
@@ -12,6 +15,9 @@ injectGlobal`
     margin: 0;
     padding: 0;
     color: white;
+    @media screen and (max-width: 700px) {
+      font-size: 0.8em;
+    }
   }
   table {
     padding: 0;
@@ -51,14 +57,13 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>F.A.Q. Code du travail</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <link rel="shortcut icon" type="image/x-icon" href="/faq-code-du-travail/static/assets/favicon.ico" />
           {this.props.styleTags}
         </Head>
         <body>
-          <div className="container">
-            <Main />
-            <NextScript />
-          </div>
+          <Main />
+          <NextScript />
         </body>
       </html>
     );

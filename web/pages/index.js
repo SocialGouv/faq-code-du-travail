@@ -12,11 +12,18 @@ const extractKeys = (arr, key) => {
   return keys;
 };
 
-// CSS grid layout
+// CSS grid layouts
 const layout = `
   "intro branches"
   "themes branches"
   "resultats resultats"
+`;
+
+const layoutMobile = `
+  "intro"
+  "branches"
+  "themes"
+  "resultats"
 `;
 
 const Grid = styled.div`
@@ -25,9 +32,10 @@ const Grid = styled.div`
   grid-column-gap: 20px;
   width: 100%;
   height: auto;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto;
   grid-template-areas: ${layout};
+  @media only screen and (max-width: 700px) {
+    grid-template-areas: ${layoutMobile};
+  }
 `;
 
 const Intro = styled.div`
