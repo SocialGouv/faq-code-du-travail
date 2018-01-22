@@ -9,8 +9,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "document-highlighter": "^2.0.7",
+    "fast-memoize": "^2.2.8",
+    "fuse.js": "^3.2.0",
     "next": "^4.2.3",
     "react": "^16.2.0",
+    "react-debounce-input": "^3.1.0",
     "react-dom": "^16.2.0",
     "rm": "^0.1.8",
     "styled-components": "^2.4.0",

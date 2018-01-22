@@ -1,9 +1,26 @@
 import styled from "styled-components";
+import highlighter from "document-highlighter";
+import { DebounceInput } from "react-debounce-input";
+
+export const SearchInput = styled(DebounceInput)`
+  font-size: 1.5em;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 3px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 600px;
+  display: block;
+`;
 
 export const SommaireTitle = styled.div`
   font-weight: bold;
-  font-size: 1.8em;
+  font-size: 1.4em;
   margin-bottom: 10px;
+  @media screen and (max-width: 700px) {
+    font-size: 1.3em;
+  }
 `;
 
 export const SommaireEntries = styled.div`margin: 0 20px;`;
@@ -59,8 +76,8 @@ export const Results = styled.div``;
 export const ResultsTitle = styled.div`
   text-align: center;
   line-height: 1.5em;
-  font-size: ${props => (props.small ? "1.4em" : "1.6em")};
-  font-weight: bold;
+  font-size: ${props => (props.small ? "1.2em" : "1.3em")};
+  xfont-weight: bold;x
 `;
 
 export const Block = styled.div`
@@ -68,9 +85,12 @@ export const Block = styled.div`
   background: #fafafa;
   border: 1px solid silver;
   color: black;
-  border-radius: 3px;
+  border-radius: 2px;
   height: 100%;
   box-sizing: border-box;
+  @media screen and (max-width: 700px) {
+    padding: 10px;
+  }
 `;
 
 export const Textarea = styled.textarea`
@@ -132,17 +152,29 @@ export const Sommaire = ({ title, selected, entries, onClick }) => (
   </Block>
 );
 
-export const Result = ({ style, showTheme, showBranche, question, reponse, theme, branche }) => (
-  <Block style={style}>
-    <Contexte>
-      ▶ {showTheme && theme}
-      {showTheme && showBranche && " / "}
-      {showBranche && branche}
-    </Contexte>
-    <Question>{question}</Question>
-    <Reponse dangerouslySetInnerHTML={{ __html: reponse }} />
-  </Block>
+highlighter.defaultOptions.before = `<span style="background:yellow">`;
+highlighter.defaultOptions.after = "</span>";
+highlighter.defaultOptions.language = "fr";
+
+const HightLightDiv = ({ text, query, style }) => (
+  <div style={style} dangerouslySetInnerHTML={{ __html: highlighter.html(text || "", query).html }} />
 );
+
+export const Result = ({ style, showTheme, showBranche, question, reponse, theme, branche, query }) => {
+  //console.log("highlighter.html(reponse, query)", highlighter.html(theme, query));
+  return (
+    <Block style={style}>
+      <Contexte>
+        {showTheme && <HightLightDiv text={`▶  Thème : ${theme}`} query={query} />}
+        {showBranche && <HightLightDiv text={`▶  Branche : ${branche}`} query={query} />}
+      </Contexte>
+      <Question>{<HightLightDiv text={question} query={query} />}</Question>
+      <Reponse>
+        <HightLightDiv text={reponse} query={query} />
+      </Reponse>
+    </Block>
+  );
+};
 
 export const SendMessage = () => (
   <Block style={{ padding: "10px 20px" }}>
