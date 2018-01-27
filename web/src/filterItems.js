@@ -9,7 +9,7 @@ const DEFAULT_FUSE_OPTIONS = {
   threshold: 0.3,
   //verbose: true,
   location: 0,
-  distance: 10,
+  distance: 50,
   //maxPatternLength: 32,
   minMatchCharLength: 1,
   // keys: ["question", "reponse", "branche", "theme"]
@@ -20,15 +20,15 @@ const DEFAULT_FUSE_OPTIONS = {
     },
     {
       name: "reponse",
-      weight: 0.2
+      weight: 0.3
     },
     {
       name: "branche",
-      weight: 0.3
+      weight: 0.5
     },
     {
       name: "theme",
-      weight: 0.3
+      weight: 0.5
     }
   ]
 };

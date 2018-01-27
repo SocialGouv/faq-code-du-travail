@@ -1,11 +1,12 @@
-//import { Grid, Cell } from "styled-css-grid";
-
 import styled from "styled-components";
 
-import { Sommaire, Results, ResultsTitle, Result, WelcomeText, SearchInput } from "../src/components";
+import { Sommaire, Results, ResultsTitle, WelcomeText, SearchInput } from "../src/components";
 import fuseFilterItems from "../src/filterItems";
+import Result from "../src/Result";
+import NoResultForm from "../src/NoResultForm";
+import SendMessage from "../src/SendMessage";
 
-const faqData = require("../data/faq.json");
+import faqData from "../data/faq.json";
 
 // extract unique sorted keys from given array
 const extractKeys = (arr, key) => {
@@ -181,6 +182,7 @@ export default class extends React.Component {
               {...res}
             />
           ))}
+          {!results.length && <NoResultForm />}
         </Results>
       </Container>
     );
