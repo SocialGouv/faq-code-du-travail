@@ -17,10 +17,11 @@ const extractKeys = (arr, key) => {
 
 // CSS grid layouts
 const layout = `
-  "intro branches"
-  "themes branches"
-  "search search"
-  "resultats resultats"
+  "intro intro"
+  "search infos"
+  "themes resultats"
+  "branches resultats"
+  "branches resultats"
 `;
 
 const layoutMobile = `
@@ -28,6 +29,7 @@ const layoutMobile = `
   "branches"
   "themes"
   "search"
+  "infos"
   "resultats"
 `;
 
@@ -35,29 +37,31 @@ const Grid = styled.div`
   display: grid;
   grid-row-gap: 20px;
   grid-column-gap: 20px;
+  grid-template-columns: 1fr 3fr;
   xgrid-auto-columns: 100%;
   height: auto;
   grid-template-areas: ${layout};
   @media only screen and (max-width: 700px) {
     grid-template-areas: ${layoutMobile};
+    grid-template-columns: 1fr;
     font-size: 0.8em;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
   }
 `;
 
-const Intro = styled.div`
-  text-align: center;
-  grid-area: intro;
-`;
+const Intro = styled.div`grid-area: intro;`;
 
 const Themes = styled.div`grid-area: themes;`;
 
 const Branches = styled.div`grid-area: branches;`;
 
 const Resultats = styled.div`
-  text-align: center;
   grid-area: resultats;
+  grid-row: 3 / span 4;
+  @media only screen and (max-width: 700px) {
+    grid-row: auto;
+  }
 `;
 
 const sortByKey = (key, a, b) => {
@@ -168,22 +172,21 @@ export default class extends React.Component {
               onChange={event => this.updateQuery(event.target.value)}
             />
           </div>
+          <ResultsTitle style={{ gridArea: "infos" }}>{resultsTitle}</ResultsTitle>
+          <Resultats>
+            {results.map((res, i) => (
+              <Result
+                query={this.state.query}
+                style={{ marginBottom: 10 }}
+                showBranche={!this.state.branche}
+                showTheme={!this.state.theme}
+                key={res.reponse + i}
+                {...res}
+              />
+            ))}
+            {!results.length && <NoResultForm />}
+          </Resultats>
         </Grid>
-        <Results>
-          <ResultsTitle>{resultsTitle}</ResultsTitle>
-          <br />
-          {results.map((res, i) => (
-            <Result
-              query={this.state.query}
-              style={{ marginBottom: 10 }}
-              showBranche={!this.state.branche}
-              showTheme={!this.state.theme}
-              key={res.reponse + i}
-              {...res}
-            />
-          ))}
-          {!results.length && <NoResultForm />}
-        </Results>
       </Container>
     );
   }

@@ -33,7 +33,7 @@ class NoResultForm extends React.Component {
         status: "loading"
       },
       () => {
-        // FAKE
+        // TODO
         setTimeout(() => {
           this.setState({
             status: "sent",

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { DebounceInput } from "react-debounce-input";
 
 export const SearchInput = styled(DebounceInput)`
-  font-size: 1.5em;
-  padding: 10px 20px;
+  font-size: 1em;
+  padding: 10px 5px;
   text-align: center;
   border-radius: 3px;
   margin: 0 auto;
@@ -22,11 +22,15 @@ export const SommaireTitle = styled.div`
   }
 `;
 
-export const SommaireEntries = styled.div`margin: 0 20px;`;
+export const SommaireEntries = styled.div`margin: 0;`;
 
 export const SommaireEntry = styled.div`
   cursor: pointer;
   line-height: 2em;
+  overflow: hidden;
+  height: 2em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   &::before {
     content: "▶";
     margin-right: 5px;
@@ -49,13 +53,10 @@ export const SommaireEntry = styled.div`
       : ``};
 `;
 
-export const Results = styled.div``;
-
 export const ResultsTitle = styled.div`
   text-align: center;
-  line-height: 1.5em;
-  font-size: ${props => (props.small ? "1.2em" : "1.3em")};
-  xfont-weight: bold;x
+  font-size: 1.6em;
+  line-height: 2em;
 `;
 
 export const Block = styled.div`
@@ -77,14 +78,14 @@ const capitalize = string => {
 };
 
 export const WelcomeText = () => (
-  <Block style={{ padding: "10px 30px" }}>
+  <Block style={{ padding: "10px 30px", textAlign: "center" }}>
     <h2>Bienvenue sur la F.A.Q. du code du travail</h2>
     <p style={{ fontSize: "1.2em", lineHeight: "1.5em" }}>55 réponses aux questions les plus fréquemment posées</p>
   </Block>
 );
 
 export const Sommaire = ({ title, selected, entries, onClick }) => (
-  <Block>
+  <Block style={{ padding: 10 }}>
     <SommaireTitle>{title}</SommaireTitle>
     <SommaireEntries>
       {entries.map(entry => (
