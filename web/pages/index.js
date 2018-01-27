@@ -109,7 +109,7 @@ export default class extends React.Component {
     const isCurrentTheme = entry => !hasSelection || (entry.theme && entry.theme === this.state.theme);
     const isCurrentBranche = entry => !hasSelection || (entry.branche && entry.branche === this.state.branche);
     const results = faq.filter(x => isCurrentTheme(x) || isCurrentBranche(x));
-    const queryResults = (this.state.query && fuseFilterItems(results, this.state.query)) || results || [];
+    const queryResults = (this.state.query && fuseFilterItems(results, this.state.query.trim())) || results || [];
     queryResults.sort(resultSorter(!!this.state.theme));
     return queryResults;
   };
