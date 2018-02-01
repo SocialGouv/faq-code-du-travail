@@ -35,8 +35,8 @@ const layoutMobile = `
 
 const Grid = styled.div`
   display: grid;
-  grid-row-gap: 20px;
-  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
   grid-template-columns: 1fr 3fr;
   xgrid-auto-columns: 100%;
   height: auto;
@@ -80,7 +80,7 @@ const resultSorter = isThemeFiltered => (a, b) => {
 
 const Container = styled.div`
   padding: 20px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   @media only screen and (max-width: 700px) {
     padding: 10px;

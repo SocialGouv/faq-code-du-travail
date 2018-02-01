@@ -14,7 +14,7 @@ export const Contexte = styled.div`
 export const Question = styled.div`
   font-size: 1.2em;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 15x 0 20px 0;
   line-height: 1.5em;
   border-left: 1px solid silver;
   padding-left: 20px;

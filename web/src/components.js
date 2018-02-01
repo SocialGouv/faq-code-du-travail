@@ -65,7 +65,6 @@ export const Block = styled.div`
   border: 1px solid silver;
   color: black;
   border-radius: 2px;
-  height: 100%;
   box-sizing: border-box;
   @media screen and (max-width: 700px) {
     padding: 10px;

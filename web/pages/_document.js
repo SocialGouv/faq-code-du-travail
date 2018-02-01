@@ -15,9 +15,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     color: white;
-    @media screen and (max-width: 700px) {
-      font-size: 0.8em;
-    }
+    font-size: 0.8em;
   }
   table {
     padding: 0;
@@ -34,14 +32,6 @@ injectGlobal`
     border: 1px solid silver;
   }
 
-  .container {
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 0;
-    @media screen and (min-width: 1200px) {
-      max-width: 1200px;
-    }
-  }
 `;
 
 export default class MyDocument extends Document {

@@ -33,14 +33,28 @@ class NoResultForm extends React.Component {
         status: "loading"
       },
       () => {
-        // TODO
-        setTimeout(() => {
-          this.setState({
-            status: "sent",
-            message: "",
-            email: ""
+        fetch("https://formspree.io/julien@bouquillon.com", {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          method: "POST",
+          body: JSON.stringify({
+            message: this.state.message,
+            email: this.state.email
+          })
+        })
+          .then(() => {
+            this.setState({
+              status: "sent",
+              message: "",
+              email: ""
+            });
+          })
+          .catch(() => {
+            this.setState({
+              status: "error"
+            });
           });
-        }, 500);
       }
     );
   };
@@ -48,7 +62,8 @@ class NoResultForm extends React.Component {
     const buttonMessage = {
       default: "Soumettre la question",
       sent: "Votre demande a bien été envoyée, merci !",
-      loading: "Envoi en cours...."
+      loading: "Envoi en cours....",
+      error: "Impossible d'envoyer votre message......."
     }[this.state.status || "default"];
     return (
       <div style={{ textAlign: "center", fontSize: "1.5em" }}>
@@ -56,19 +71,22 @@ class NoResultForm extends React.Component {
         <p>Soumettez votre question à nos services :</p>
         <SubmitTextarea
           value={this.state.message}
-          onChange={e => this.setState({ message: e.target.value })}
+          onChange={e => this.setState({ status: "", message: e.target.value })}
           placeholder="Votre question"
         />
         <p>Recevez la réponse par email:</p>
         <SubmitInput
           value={this.state.email}
           type="email"
-          onChange={e => this.setState({ email: e.target.value })}
+          onChange={e => this.setState({ status: "", email: e.target.value })}
           placeholder="Votre email"
         />
         <br />
         <br />
-        <SubmitButton onClick={this.send} disabled={!this.state.message || this.state.status}>
+        <SubmitButton
+          onClick={this.send}
+          disabled={!this.state.message || !this.state.email || (this.state.status && this.state.status !== "error")}
+        >
           {buttonMessage}
         </SubmitButton>
       </div>
