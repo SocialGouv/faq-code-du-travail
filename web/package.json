@@ -6,7 +6,8 @@
     "dev": "next",
     "build": "next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "npm run build && npm run export && touch ./out/.nojekyll && gh-pages -t -d ./out"
   },
   "dependencies": {
     "document-highlighter": "^2.0.7",
@@ -21,6 +22,8 @@
     "styled-css-grid": "^0.8.1"
   },
   "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "gh-pages": "^1.1.0"
   }
 }
