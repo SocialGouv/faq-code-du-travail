@@ -1,10 +1,9 @@
-import styled from "styled-components";
+import { Container, Sommaire, ResultsTitle, WelcomeText, SearchInput } from "../src/components";
+import { Grid, Intro, Themes, Branches, Resultats, Search } from "../src/Grid";
 
-import { Sommaire, Results, ResultsTitle, WelcomeText, SearchInput } from "../src/components";
 import fuseFilterItems from "../src/filterItems";
 import Result from "../src/Result";
 import NoResultForm from "../src/NoResultForm";
-import SendMessage from "../src/SendMessage";
 
 import faqData from "../data/faq.json";
 
@@ -15,55 +14,6 @@ const extractKeys = (arr, key) => {
   return keys;
 };
 
-// CSS grid layouts
-const layout = `
-  "intro intro"
-  "search infos"
-  "themes resultats"
-  "branches resultats"
-  "branches resultats"
-`;
-
-const layoutMobile = `
-  "intro"
-  "branches"
-  "themes"
-  "search"
-  "infos"
-  "resultats"
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
-  grid-template-columns: 1fr 3fr;
-  xgrid-auto-columns: 100%;
-  height: auto;
-  grid-template-areas: ${layout};
-  @media only screen and (max-width: 700px) {
-    grid-template-areas: ${layoutMobile};
-    grid-template-columns: 1fr;
-    font-size: 0.8em;
-    grid-row-gap: 10px;
-    grid-column-gap: 10px;
-  }
-`;
-
-const Intro = styled.div`grid-area: intro;`;
-
-const Themes = styled.div`grid-area: themes;`;
-
-const Branches = styled.div`grid-area: branches;`;
-
-const Resultats = styled.div`
-  grid-area: resultats;
-  grid-row: 3 / span 4;
-  @media only screen and (max-width: 700px) {
-    grid-row: auto;
-  }
-`;
-
 const sortByKey = (key, a, b) => {
   if (a[key] > b[key]) {
     return 1;
@@ -73,19 +23,11 @@ const sortByKey = (key, a, b) => {
   return 0;
 };
 
+// custom sort results
 const resultSorter = isThemeFiltered => (a, b) => {
   const key = isThemeFiltered ? "branche" : "theme";
   return sortByKey(key, a, b);
 };
-
-const Container = styled.div`
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  @media only screen and (max-width: 700px) {
-    padding: 10px;
-  }
-`;
 
 export default class extends React.Component {
   state = {
@@ -94,10 +36,12 @@ export default class extends React.Component {
     query: null
   };
 
+  // load data
   static async getInitialProps({ req }) {
     return { faq: faqData };
   }
 
+  // user clicked some menu; toggle filters
   updateSelection = (key, value) => {
     if (this.state[key] === value) {
       this.setState({ branche: null, theme: null, query: null });
@@ -108,14 +52,15 @@ export default class extends React.Component {
   };
 
   getResults = () => {
-    // const NO CACHE
+    // compute results
     const { faq } = this.props;
-    const hasSelection = this.state.theme || this.state.branche;
-    const isCurrentTheme = entry => !hasSelection || (entry.theme && entry.theme === this.state.theme);
-    const isCurrentBranche = entry => !hasSelection || (entry.branche && entry.branche === this.state.branche);
-    const results = faq.filter(x => isCurrentTheme(x) || isCurrentBranche(x));
-    const queryResults = (this.state.query && fuseFilterItems(results, this.state.query.trim())) || results || [];
-    queryResults.sort(resultSorter(!!this.state.theme));
+    const { theme, branche, query } = this.state;
+    const hasSelection = theme || branche;
+    const isCurrentTheme = entry => !hasSelection || (entry.theme && entry.theme === theme);
+    const isCurrentBranche = entry => !hasSelection || (entry.branche && entry.branche === branche);
+    const results = faq.filter(entry => isCurrentTheme(entry) || isCurrentBranche(entry));
+    const queryResults = (query && fuseFilterItems(results, query.trim())) || results || [];
+    queryResults.sort(resultSorter(!!theme));
     return queryResults;
   };
 
@@ -125,10 +70,6 @@ export default class extends React.Component {
       branche: null,
       theme: null
     });
-
-  onKeyDown = e => {
-    this.debouncedUpdateQuery(e.target.value);
-  };
 
   render() {
     const { faq } = this.props;
@@ -163,7 +104,7 @@ export default class extends React.Component {
               onClick={entry => this.updateSelection("theme", entry)}
             />
           </Themes>
-          <div style={{ gridArea: "search" }}>
+          <Search>
             <SearchInput
               placeholder="ex: durée du travail pour un cuisinier"
               minLength={2}
@@ -171,7 +112,7 @@ export default class extends React.Component {
               debounceTimeout={300}
               onChange={event => this.updateQuery(event.target.value)}
             />
-          </div>
+          </Search>
           <ResultsTitle style={{ gridArea: "infos" }}>{resultsTitle}</ResultsTitle>
           <Resultats>
             {results.map((res, i) => (

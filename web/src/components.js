@@ -71,6 +71,15 @@ export const Block = styled.div`
   }
 `;
 
+export const Container = styled.div`
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  @media only screen and (max-width: 700px) {
+    padding: 10px;
+  }
+`;
+
 const capitalize = string => {
   string = string.toLowerCase();
   return string.charAt(0).toUpperCase() + string.substring(1);
@@ -79,7 +88,9 @@ const capitalize = string => {
 export const WelcomeText = () => (
   <Block style={{ padding: "10px 30px", textAlign: "center" }}>
     <h2>Bienvenue sur la F.A.Q. du code du travail</h2>
-    <p style={{ fontSize: "1.2em", lineHeight: "1.5em" }}>55 réponses aux questions les plus fréquemment posées</p>
+    <p style={{ fontSize: "1.2em", lineHeight: "1.5em" }}>
+      55 réponses aux questions les plus fréquemment posées
+    </p>
   </Block>
 );
 

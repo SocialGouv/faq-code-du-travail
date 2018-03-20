@@ -9,3 +9,11 @@ Sources :
 
 FAQ portant sur les sujets les plus régulièrement traités par les services de renseignements et dans les 10 secteurs d’activité identifiés comme les plus demandeurs.
 
+## Données
+
+Les données brutes sont disponibles ici [faq.json](./web/data/faq.json)
+
+## Frontend
+
+Le frontend est dans [./web](./web)
+

@@ -1,8 +1,17 @@
-frontend pour la FAQ code du travail numérique
+# FAQ Code du travail numérique
+
+[Cliquez ici pour accéder à la F.A.Q.](https://socialgouv.github.io/faq-code-du-travail)
+
+Sources :
+
+ - Ministère du Travail - Novembre 2017
+ - Observatoire de la demande de renseignements - ODR
+
+FAQ portant sur les sujets les plus régulièrement traités par les services de renseignements et dans les 10 secteurs d’activité identifiés comme les plus demandeurs.
 
 ## Dev
 
-Basé sur React et Next.js
+Frontend basé sur React et Next.js
 
 ## Usage
 
@@ -10,9 +19,11 @@ Basé sur React et Next.js
 
 `npm run dev`
 
+`npm run deploy`
+
 ## Todo
 
+ - design
  - linkify
- - Accéssibilité
- - Responsive
+ - accéssibilité
  - rating widget

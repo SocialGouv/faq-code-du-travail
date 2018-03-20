@@ -6,7 +6,7 @@
     "dev": "next",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
+    "start": "next",
     "deploy": "npm run build && npm run export && touch ./out/.nojekyll && gh-pages -t -d ./out"
   },
   "dependencies": {
@@ -23,8 +23,13 @@
     "styled-css-grid": "^0.8.1"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "eslint": "^4.18.1",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "gh-pages": "^1.1.0"
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "gh-pages": "^1.1.0",
+    "prettier": "^1.11.1"
   }
 }
