@@ -7,6 +7,7 @@
     "build": "next build",
     "export": "next export",
     "start": "next",
+    "test": "cypress run --headed",
     "deploy": "npm run build && npm run export && touch ./out/.nojekyll && gh-pages -t -d ./out"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "cypress": "^2.1.0",
     "eslint": "^4.18.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",

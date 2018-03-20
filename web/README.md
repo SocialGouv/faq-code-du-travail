@@ -19,6 +19,8 @@ Frontend basé sur React et Next.js
 
 `npm run dev`
 
+`npm run test`
+
 `npm run deploy`
 
 ## Todo

@@ -88,7 +88,7 @@ export default class extends React.Component {
           <Intro>
             <WelcomeText />
           </Intro>
-          <Branches>
+          <Branches className="bloc--branches">
             <Sommaire
               title="Branches"
               selected={this.state.branche}
@@ -96,7 +96,7 @@ export default class extends React.Component {
               onClick={entry => this.updateSelection("branche", entry)}
             />
           </Branches>
-          <Themes>
+          <Themes className="bloc--themes">
             <Sommaire
               title="Thèmes"
               selected={this.state.theme}
@@ -106,6 +106,7 @@ export default class extends React.Component {
           </Themes>
           <Search>
             <SearchInput
+              className="input--search"
               placeholder="ex: durée du travail pour un cuisinier"
               minLength={2}
               value={this.state.query || ""}
@@ -113,8 +114,10 @@ export default class extends React.Component {
               onChange={event => this.updateQuery(event.target.value)}
             />
           </Search>
-          <ResultsTitle style={{ gridArea: "infos" }}>{resultsTitle}</ResultsTitle>
-          <Resultats>
+          <ResultsTitle className="bloc--results-title" style={{ gridArea: "infos" }}>
+            {resultsTitle}
+          </ResultsTitle>
+          <Resultats className="bloc--resultats">
             {results.map((res, i) => (
               <Result
                 query={this.state.query}
