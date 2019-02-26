@@ -1,0 +1,18 @@
+image: docker:latest
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375 #Nécessaire depuis le passage sur des runner sur l'executor Kubernetes
+
+services:
+  - docker:dind
+
+stages:
+  - build
+
+build:
+  image: node:10
+  stage: build
+  script:
+    - cd web
+    - npm run build
+    - npm run export
