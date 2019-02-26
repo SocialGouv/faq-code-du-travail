@@ -1,4 +1,4 @@
-# FAQ Code du travail numérique
+# FAQ Code du travail numérique ☀️
 
 [Cliquez ici pour accéder à la F.A.Q.](https://socialgouv.github.io/faq-code-du-travail)
 
