@@ -14,7 +14,7 @@
     "document-highlighter": "^2.0.7",
     "fast-memoize": "^2.2.8",
     "fuse.js": "^3.2.0",
-    "next": "^4.2.3",
+    "next": "^9.3.2",
     "react": "^16.2.0",
     "react-debounce-input": "^3.1.0",
     "react-dom": "^16.2.0",
